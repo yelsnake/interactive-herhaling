@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Oefening 1</title>
+</head>
+<body>
+<div class="container">
+    <h1>Hoofdstuk 2: Oefening 1</h1>
+    <form>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Getallen</span>
+            </div>
+            <input type="text" id="number1" class="form-control" placeholder="number 1">
+            <input type="text" id="number2" class="form-control" placeholder="number 2">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-primary" type="button" onclick="order()">order</button>
+            </div>
+
+        </div>
+    </form>
+    <div id="result" class="alert alert-primary"></div>
+</div>
+<script>
+    //number1El en number2El zijn html-Elements van type input
+    //getMessage returnt een string die getoond kan worden aan de user
+    function getMessage(number1El, number2El) {
+        //precondities check: zijn 2 getallen ingegeven?
+        if (!number1El || !number2El)
+            return "Vul beide getallen in";
+        const number1 = Number(number1El);
+        const number2 = Number(number2El);
+        if (isNaN(number1) || isNaN(number2))
+            return "Je mag enkel getallen gebruiken";
+
+        if (number1 === number2)
+            return `${number1} = ${number2}`;
+        //merk op" als de if een return doet is het niet nodig een else te schrijven
+        if (number1 < number2)
+            return `${number1} < ${number2}`
+        return `${number1} > ${number2}`;
+    }
+
+    function order() {
+        const number1El = document.getElementById("number1").value;
+        const number2El = document.getElementById("number2").value;
+        const message = getMessage(number1El, number2El);
+        document.getElementById("result").innerHTML = message;
+    }
+</script>
+</body>
+</html>
